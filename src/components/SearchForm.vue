@@ -19,7 +19,7 @@
             <v-text-field
               v-model="languageName"
               label="Language"
-              :rules="languageFormRules()"
+              :rules="formRule('Language')"
               outlined
               dark
             ></v-text-field>
@@ -29,7 +29,7 @@
             <v-text-field
               v-model="keyword"
               label="Keyword"
-              :rules="keywordFormRules()"
+              :rules="formRule('Keyword')"
               outlined
               dark
             ></v-text-field>
@@ -75,16 +75,16 @@ export default class SearchForm extends Vue {
   private readonly sortByOptions: object[] = [
     {
       name: "Stars",
-      value: SortByEnum.STARS,
+      value: SortByEnum.STARS
     },
     {
       name: "Forks",
-      value: SortByEnum.FORKS,
+      value: SortByEnum.FORKS
     },
     {
       name: "Help wanted issues",
-      value: SortByEnum.HELP_WANTED_ISSUES,
-    },
+      value: SortByEnum.HELP_WANTED_ISSUES
+    }
   ];
 
   private languageName = "JavaScript";
@@ -93,20 +93,16 @@ export default class SearchForm extends Vue {
   private isLoading = false;
   private buttonDisabled = false;
 
-  private languageFormRules(): boolean | Array<unknown> {
+  private formRule(fieldName: string): Array<unknown> {
     if (this.languageName || this.keyword) {
+      this.buttonDisabled = false;
+
       return [];
     }
 
-    return [(v: unknown) => !!v || "Language is required"];
-  }
+    this.buttonDisabled = true;
 
-  private keywordFormRules(): Array<unknown> {
-    if (this.languageName || this.keyword) {
-      return [];
-    }
-
-    return [(v: unknown) => !!v || "Keyword is required"];
+    return [(v: unknown) => !!v || `${fieldName} is required`];
   }
 
   private searchRepos(): void {
@@ -117,8 +113,8 @@ export default class SearchForm extends Vue {
         params: {
           language: this.languageName,
           keyword: this.keyword,
-          sort: this.sortBy,
-        },
+          sort: this.sortBy
+        }
       })
       .then((axiosResponse: AxiosResponse) => {
         this.$emit("changeData", axiosResponse.data);
