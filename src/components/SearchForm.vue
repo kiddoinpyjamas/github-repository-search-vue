@@ -25,8 +25,8 @@
 
           <v-flex lg3 md3 sm12 xs12>
             <v-text-field
-              v-model="repositoryName"
-              label="Repository name"
+              v-model="keyword"
+              label="Keyword"
               outlined
             ></v-text-field>
           </v-flex>
@@ -83,7 +83,7 @@ export default class SearchForm extends Vue {
   ];
 
   private languageName = "JavaScript";
-  private repositoryName = "";
+  private keyword = "";
   private sortBy: SortByEnum = SortByEnum.STARS;
   private isLoading = false;
 
@@ -94,7 +94,7 @@ export default class SearchForm extends Vue {
       .get("/search", {
         params: {
           language: this.languageName,
-          name: this.repositoryName,
+          keyword: this.keyword,
           sort: this.sortBy
         }
       })
