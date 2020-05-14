@@ -41,6 +41,7 @@
               :items="sortByOptions"
               item-text="name"
               item-value="value"
+              item-color="secondary"
               label="Sort by"
               outlined
             ></v-select>
