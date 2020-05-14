@@ -7,8 +7,10 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon @click="this.$vuetify.theme.dark = !this.$vuetify.theme.dark">
-        <v-icon>theme-light-dark</v-icon>
+      <v-btn icon @click="changeTheme()">
+        <v-icon dark>
+          {{ getChangeThemeButtonIcon() }}
+        </v-icon>
       </v-btn>
 
       <v-btn
@@ -36,6 +38,27 @@ export default Vue.extend({
 
   components: {
     Main
-  }
+  },
+
+  methods: {
+    changeTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    },
+    getChangeThemeButtonIcon() {
+      return this.$vuetify.theme.dark
+        ? "mdi-white-balance-sunny"
+        : "mdi-weather-night";
+    }
+  },
+
+  data() {
+    return {
+      $vuetify: {
+        theme: {
+          dark: true
+        }
+      }
+    };
+  },
 });
 </script>

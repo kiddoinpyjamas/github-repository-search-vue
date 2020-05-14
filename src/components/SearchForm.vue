@@ -21,7 +21,6 @@
               label="Language"
               :rules="formRule('Language')"
               outlined
-              dark
             ></v-text-field>
           </v-flex>
 
@@ -31,7 +30,6 @@
               label="Keyword"
               :rules="formRule('Keyword')"
               outlined
-              dark
             ></v-text-field>
           </v-flex>
 

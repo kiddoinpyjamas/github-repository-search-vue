@@ -56,7 +56,8 @@
       "ecmaVersion": 2020
     },
     "rules": {
-      "@typescript-eslint/camelcase": "off"
+      "@typescript-eslint/camelcase": "off",
+      "@typescript-eslint/no-explicit-any": "off"
     }
   },
   "browserslist": [
