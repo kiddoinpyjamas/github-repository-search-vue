@@ -19,7 +19,9 @@
             <v-text-field
               v-model="languageName"
               label="Language"
+              :rules="languageFormRules()"
               outlined
+              dark
             ></v-text-field>
           </v-flex>
 
@@ -27,7 +29,9 @@
             <v-text-field
               v-model="keyword"
               label="Keyword"
+              :rules="keywordFormRules()"
               outlined
+              dark
             ></v-text-field>
           </v-flex>
 
@@ -44,6 +48,7 @@
 
           <v-flex lg1 md1 sm12 style="margin-bottom: 1.8em">
             <v-btn
+              :disabled="buttonDisabled"
               @click="searchRepos()"
               :loading="isLoading"
               color="secondary"
@@ -70,22 +75,39 @@ export default class SearchForm extends Vue {
   private readonly sortByOptions: object[] = [
     {
       name: "Stars",
-      value: SortByEnum.STARS
+      value: SortByEnum.STARS,
     },
     {
       name: "Forks",
-      value: SortByEnum.FORKS
+      value: SortByEnum.FORKS,
     },
     {
       name: "Help wanted issues",
-      value: SortByEnum.HELP_WANTED_ISSUES
-    }
+      value: SortByEnum.HELP_WANTED_ISSUES,
+    },
   ];
 
   private languageName = "JavaScript";
   private keyword = "";
   private sortBy: SortByEnum = SortByEnum.STARS;
   private isLoading = false;
+  private buttonDisabled = false;
+
+  private languageFormRules(): boolean | Array<unknown> {
+    if (this.languageName || this.keyword) {
+      return [];
+    }
+
+    return [(v: unknown) => !!v || "Language is required"];
+  }
+
+  private keywordFormRules(): Array<unknown> {
+    if (this.languageName || this.keyword) {
+      return [];
+    }
+
+    return [(v: unknown) => !!v || "Keyword is required"];
+  }
 
   private searchRepos(): void {
     this.isLoading = true;
@@ -95,8 +117,8 @@ export default class SearchForm extends Vue {
         params: {
           language: this.languageName,
           keyword: this.keyword,
-          sort: this.sortBy
-        }
+          sort: this.sortBy,
+        },
       })
       .then((axiosResponse: AxiosResponse) => {
         this.$emit("changeData", axiosResponse.data);

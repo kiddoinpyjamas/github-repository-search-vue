@@ -35,7 +35,7 @@ export default Vue.extend({
   name: "App",
 
   components: {
-    Main,
-  },
+    Main
+  }
 });
 </script>
