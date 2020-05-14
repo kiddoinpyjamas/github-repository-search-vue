@@ -95,8 +95,8 @@ export default class SearchForm extends Vue {
         params: {
           language: this.languageName,
           name: this.repositoryName,
-          sort: this.sortBy,
-        },
+          sort: this.sortBy
+        }
       })
       .then((axiosResponse: AxiosResponse) => {
         this.$emit("changeData", axiosResponse.data);
