@@ -42,7 +42,7 @@
             ></v-select>
           </v-flex>
 
-          <v-flex lg1 md3 sm12 style="margin-bottom: 1.8em">
+          <v-flex lg1 md1 sm12 style="margin-bottom: 1.8em">
             <v-btn
               @click="searchRepos()"
               :loading="isLoading"

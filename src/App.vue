@@ -7,6 +7,10 @@
 
       <v-spacer></v-spacer>
 
+      <v-btn icon @click="this.$vuetify.theme.dark = !this.$vuetify.theme.dark">
+        <v-icon>theme-light-dark</v-icon>
+      </v-btn>
+
       <v-btn
         href="https://github.com/Kidoncio/github-repository-search-vue"
         target="_blank"
@@ -31,7 +35,7 @@ export default Vue.extend({
   name: "App",
 
   components: {
-    Main
-  }
+    Main,
+  },
 });
 </script>
