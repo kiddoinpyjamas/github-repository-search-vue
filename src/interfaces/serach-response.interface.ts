@@ -19,6 +19,7 @@ export interface ItemOwner {
   starred_url: string;
   subscriptions_url: string;
   organizations_url: string;
+  html_url: string;
   repos_url: string;
   events_url: string;
   received_events_url: string;
