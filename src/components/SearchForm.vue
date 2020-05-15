@@ -54,8 +54,10 @@
               outlined
               dark
               large
-              >Search</v-btn
+              style="height: 56px;"
             >
+              Search
+            </v-btn>
           </v-flex>
         </v-row>
       </v-flex>
